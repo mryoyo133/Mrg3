@@ -1,12 +1,13 @@
 # Create your models here.
 
+from operator import mod
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
 class User(AbstractUser):
-    tests = models.ManyToManyField('Test')
+    scores = models.ManyToManyField('Score')
 
 class Subject(models.Model):
     name = models.CharField(max_length= 24)
@@ -14,6 +15,11 @@ class Subject(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+class Score(models.Model):
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    test = models.ForeignKey('Test', on_delete=models.CASCADE)
+    score = models.CharField(blank=True, max_length= 2)
 
 class Test(models.Model):
     title = models.CharField(max_length= 24, blank= True)

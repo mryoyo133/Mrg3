@@ -1,0 +1,7 @@
+api:
+1-singin(post)
+2-login(get and post)
+3-subject(get)
+4-tests for subject(get)
+5-test(get)
+6-history(get)

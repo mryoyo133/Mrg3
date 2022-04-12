@@ -11,7 +11,6 @@ class User(AbstractUser):
 
 class Subject(models.Model):
     name = models.CharField(max_length= 24)
-    tests = models.ManyToManyField('Test', blank = True)
 
     def __str__(self):
         return f'{self.name}'
@@ -23,6 +22,7 @@ class Score(models.Model):
 
 class Test(models.Model):
     title = models.CharField(max_length= 24, blank= True)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, null = True)
     questions = models.ManyToManyField('Question')
     def __str__(self):
         return f'{self.title}'
